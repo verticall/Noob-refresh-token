@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express')
 const bodyParser = require('body-parser')
 const jwt = require('jsonwebtoken')
@@ -16,6 +17,8 @@ const whiteList = [
 
 const tokenList = {}
 const app = express()
+app.set('views', path.resolve('views'))
+app.set('view engine', 'ejs');
 
 // Logging Middleware
 app.use(function(req, res, next){
@@ -122,7 +125,7 @@ router.get('/getbrand', (req,res) => {
 
         if (err) return console.error("Uh oh! Couldn't get results: " + err.msg);
 
-        res.render('brands_view.ejs', {
+        res.render('brands_view', {
             brand_list:response
         });
         // res.send(response);
