@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Brand</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <table class="table table-border table-hover">
+            <thead>
+              <tr>
+                <th>id</th>
+                <th>brand_name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% brand_list.map((obj,idx)=>{ %>
+                <tr>
+                  <td><%= parseInt(idx)+'/'+obj.id %></td>
+                  <td><%= obj.name %></td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- <table >
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>brand_name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for(var i = 0; i< brand_list.length;i++){ %>
+          <tr>
+            <td><%= brand_list[i].id %></td>
+            <td><%= brand_list[i].name %></td>
+          </tr>
+        <% } %>
+      </tbody>
+    </table> -->
+  </body>
+</html>

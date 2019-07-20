@@ -5,6 +5,14 @@ const router = express.Router()
 const config = require('./config')
 
 
+const whiteList = [
+"/api/",
+"/api/login",
+"/api/token",
+"/api/secure",
+"/api/getproduct",
+"/api/getbrand",
+"/api/getTokenList"]
 
 const tokenList = {}
 const app = express()
@@ -12,12 +20,21 @@ const app = express()
 // Logging Middleware
 app.use(function(req, res, next){
   console.log(req.method + ' ' + req.url)
-  // white list Url
-  next();
+  // Reject Url out of WhiteList
+  if(whiteList.indexOf(req.url) == -1){
+    res.status(404).send('404 Not Found');
+  }else{
+    next();
+  }
 })
 
 router.get('/', (req,res) => {
     res.send('Ok');
+})
+
+router.get('/getTokenList',(req,res)=>{
+  var temp_refresh = Object.values(tokenList).map((obj,index)=>{return obj.token})
+  res.status(200).json(temp_refresh);
 })
 
 router.post('/login', (req,res) => {
@@ -36,8 +53,8 @@ router.post('/login', (req,res) => {
     }
     // console.log(response)
     tokenList[refreshToken] = response
-    const list_token = Object.keys(tokenList).map((val,key)=>{
-        return tokenList[val].token
+    const list_token = Object.values(tokenList).map((obj,index)=>{
+        return [obj.token,obj.refreshToken]
     })
     console.log(list_token)
     console.log(list_token.length)
@@ -93,6 +110,22 @@ router.get('/getproduct', (req,res) => {
         // [{name: 'Mercury', position: 1}, {name: 'Mars', position: 4}]
         //console.log("Results:", response);
         res.send(response);
+    }
+  );
+})
+
+router.get('/getbrand', (req,res) => {
+    const postData = req.body;
+    req.qb.select('*')
+    .get('brands', (err, response) => {
+        req.qb.disconnect();
+
+        if (err) return console.error("Uh oh! Couldn't get results: " + err.msg);
+
+        res.render('brands_view.ejs', {
+            brand_list:response
+        });
+        // res.send(response);
     }
   );
 })
