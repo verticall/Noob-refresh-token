@@ -3,5 +3,6 @@
     "refreshTokenSecret": "vertical_refresh_token",
     "port": 3000,
     "tokenLife": 900,
-    "refreshTokenLife": 86400
+    "refreshTokenLife": 86400,
+    "bodyLimit" : "100kb"
 }
