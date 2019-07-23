@@ -7,5 +7,10 @@ OR
 nodemon app.js
 
 
-localhost:5000/api/
-Respon : Ok.
+#example
+- login auth2
+- redis save/get refresh token
+- connect mysql
+- sql query builder
+- axios
+- async,await,promise.all
