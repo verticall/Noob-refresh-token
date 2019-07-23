@@ -9,7 +9,9 @@ nodemon app.js
 
 #example
 - login auth2
-- redis save/get refresh token
+- refresh_token / access_token
+- connect redis-server
+- redis [set/get/keys] refresh token
 - connect mysql
 - sql query builder
 - axios
