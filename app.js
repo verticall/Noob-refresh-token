@@ -30,7 +30,7 @@ app.set('view engine', 'ejs');
 
 // Logging Middleware
 app.use(function(req, res, next) {
-  console.log(req.method + ' ' + req.url)
+  // console.log(req.method + ' ' + req.url)
   // Reject Url out of WhiteList
   if (whiteList.indexOf(req.url) == -1) {
     res.status(404).send('404 Not Found');
@@ -47,9 +47,10 @@ app.use(bodyParser.json({
 
 
 async function xxx(url) {
-  console.log('begin :: ',url)
+  const x = Math.floor(Math.random()*100)
+  console.log('begin :: ',url,x)
   const response = await axios.get(url)
-  console.log('success :: ',url)
+  console.log('success :: ',url,x)
   return await response.data
 }
 
@@ -57,15 +58,61 @@ async function getUser() {
   console.log('start call API')
   const obj = await Promise.all(
     [
-      xxx('https://reqres.in/api/users/9'),
-      xxx('https://reqres.in/api/users/10'),
-      xxx('https://gorest.co.in/public-api/users?_format=json&access-token=pVd3wnL0BzU71cQCB-IQZvgJR8KS0UIZBvuh'),
-      xxx('https://gorest.co.in/public-api/comments?_format=json&access-token=pVd3wnL0BzU71cQCB-IQZvgJR8KS0UIZBvuh'),
-      xxx('https://reqres.in/api/users/4'),
+      xxx('http://localhost:5000/api/getTokenList'),
       xxx('https://reqres.in/api/users/5'),
+      xxx('http://localhost:5000/api/getTokenList'),
+      xxx('https://reqres.in/api/users?page=2'),
+      xxx('http://localhost:5000/api/getTokenList'),
+      xxx('http://localhost:5000/api/getTokenList'),
       xxx('https://reqres.in/api/users/6'),
+      xxx('http://localhost:5000/api/getTokenList'),
       xxx('https://reqres.in/api/users?page=1'),
-      xxx('https://reqres.in/api/users?page=2')
+      xxx('http://localhost:5000/api/getTokenList'),
+      xxx('https://reqres.in/api/users/5'),
+      xxx('http://localhost:5000/api/getTokenList'),
+      xxx('https://reqres.in/api/users?page=2'),
+      xxx('http://localhost:5000/api/getTokenList'),
+      xxx('http://localhost:5000/api/getTokenList'),
+      xxx('https://reqres.in/api/users/6'),
+      xxx('http://localhost:5000/api/getTokenList'),
+      xxx('https://reqres.in/api/users?page=1'),
+      xxx('http://localhost:5000/api/getTokenList'),
+      xxx('https://reqres.in/api/users/5'),
+      xxx('http://localhost:5000/api/getTokenList'),
+      xxx('https://reqres.in/api/users?page=2'),
+      xxx('http://localhost:5000/api/getTokenList'),
+      xxx('http://localhost:5000/api/getTokenList'),
+      xxx('https://reqres.in/api/users/6'),
+      xxx('http://localhost:5000/api/getTokenList'),
+      xxx('https://reqres.in/api/users?page=1'),
+      xxx('http://localhost:5000/api/getTokenList'),
+      xxx('https://reqres.in/api/users/5'),
+      xxx('http://localhost:5000/api/getTokenList'),
+      xxx('https://reqres.in/api/users?page=2'),
+      xxx('http://localhost:5000/api/getTokenList'),
+      xxx('http://localhost:5000/api/getTokenList'),
+      xxx('https://reqres.in/api/users/6'),
+      xxx('http://localhost:5000/api/getTokenList'),
+      xxx('https://reqres.in/api/users?page=1'),
+      xxx('http://localhost:5000/api/getTokenList'),
+      xxx('https://reqres.in/api/users/5'),
+      xxx('http://localhost:5000/api/getTokenList'),
+      xxx('https://reqres.in/api/users?page=2'),
+      xxx('http://localhost:5000/api/getTokenList'),
+      xxx('http://localhost:5000/api/getTokenList'),
+      xxx('https://reqres.in/api/users/6'),
+      xxx('http://localhost:5000/api/getTokenList'),
+      xxx('https://reqres.in/api/users?page=1'),
+      xxx('http://localhost:5000/api/getTokenList'),
+      xxx('https://reqres.in/api/users/5'),
+      xxx('http://localhost:5000/api/getTokenList'),
+      xxx('https://reqres.in/api/users?page=2'),
+      xxx('http://localhost:5000/api/getTokenList'),
+      xxx('http://localhost:5000/api/getTokenList'),
+      xxx('https://reqres.in/api/users/6'),
+      xxx('http://localhost:5000/api/getTokenList'),
+      xxx('https://reqres.in/api/users?page=1')
+
     ]
   )
   const ret = {}
@@ -83,8 +130,14 @@ router.get('/', async (req, res) => {
 router.get('/getTokenList', async (req, res) => {
   const keys_list = await getKeys_redis('node-*')
   const refresh_token = await getRefreshToken(keys_list)
-  console.log(refresh_token);
-  res.status(200).json(refresh_token);
+  // console.log(refresh_token);
+  setTimeout(
+    ()=>{
+      res.status(200).json(refresh_token)
+    }
+    ,
+    Math.floor(Math.random()*1000))
+
 })
 
 router.post('/login', async (req, res) => {
