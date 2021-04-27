@@ -13,7 +13,7 @@
     "jsonwebtoken": "^8.2.0",
     "node-minify": "^3.6.0",
     "node-querybuilder": "^2.0.1",
-    "redis": "^2.8.0"
+    "redis": "^3.1.1"
   },
   "devDependencies": {},
   "scripts": {
