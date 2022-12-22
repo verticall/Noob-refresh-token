@@ -10,7 +10,7 @@
     "body-parser": "^1.18.2",
     "ejs": "^2.6.2",
     "express": "^4.16.3",
-    "jsonwebtoken": "^8.2.0",
+    "jsonwebtoken": "^9.0.0",
     "node-minify": "^3.6.0",
     "node-querybuilder": "^2.0.1",
     "redis": "^2.8.0"
